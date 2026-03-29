@@ -12,6 +12,7 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.N
 import net.fabricmc.api.EnvType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -112,6 +113,7 @@ public abstract class ModItemsProvider
 
 	public RegistrySupplier<Item> addIngredientItem(String id, Supplier<Item> supplier)
 	{
+		// Note: supplier should create Item with properties that have id set, but since supplier is passed, assume it does
 		RegistrySupplier<Item> registrysupplier = this.items.register(id, supplier);
 		this.ingredientItems.add(registrysupplier);
 		return registrysupplier;
@@ -172,7 +174,7 @@ public abstract class ModItemsProvider
 	{
 		if (type.isDisabled())
 			return null;
-		RegistrySupplier<Item> bow = this.items.register(id, () -> new MedievalBowItem(new Item.Properties().stacksTo(1).durability(type.getDurability()), type.getProjectileSpeed(), type.getPullTime()));
+		RegistrySupplier<Item> bow = this.items.register(id, () -> { Item.Properties p = new Item.Properties().stacksTo(1).durability(type.getDurability()); setId(p, id); return new MedievalBowItem(p, type.getProjectileSpeed(), type.getPullTime()); });
 		this.rangedWeaponItems.add(bow);
 		return bow;
 	}
@@ -181,21 +183,21 @@ public abstract class ModItemsProvider
 	{
 		if (type.isDisabled())
 			return null;
-		RegistrySupplier<Item> crossbow = this.items.register(id, () -> new MedievalCrossbowItem(new Item.Properties().stacksTo(1).durability(type.getDurability()), type.getProjectileSpeed(), type.getPullTime()));
+		RegistrySupplier<Item> crossbow = this.items.register(id, () -> { Item.Properties p = new Item.Properties().stacksTo(1).durability(type.getDurability()); setId(p, id); return new MedievalCrossbowItem(p, type.getProjectileSpeed(), type.getPullTime()); });
 		this.rangedWeaponItems.add(crossbow);
 		return crossbow;
 	}
 
 	public @Nullable RegistrySupplier<Item> addMedievalBowItem(String id, int durability, float projectileSpeed, int pullTime)
 	{
-		RegistrySupplier<Item> bow = this.items.register(id, () -> new MedievalBowItem(new Item.Properties().stacksTo(1).durability(durability), projectileSpeed, pullTime));
+		RegistrySupplier<Item> bow = this.items.register(id, () -> { Item.Properties p = new Item.Properties().stacksTo(1).durability(durability); setId(p, id); return new MedievalBowItem(p, projectileSpeed, pullTime); });
 		this.rangedWeaponItems.add(bow);
 		return bow;
 	}
 
 	public @Nullable RegistrySupplier<Item> addMedievalCrossbowItem(String id, int durability, float projectileSpeed, int pullTime)
 	{
-		RegistrySupplier<Item> crossbow = this.items.register(id, () -> new MedievalCrossbowItem(new Item.Properties().stacksTo(1).durability(durability), projectileSpeed, pullTime));
+		RegistrySupplier<Item> crossbow = this.items.register(id, () -> { Item.Properties p = new Item.Properties().stacksTo(1).durability(durability); setId(p, id); return new MedievalCrossbowItem(p, projectileSpeed, pullTime); });
 		this.rangedWeaponItems.add(crossbow);
 		return crossbow;
 	}
@@ -216,6 +218,16 @@ public abstract class ModItemsProvider
 		for (RegistrySupplier<? extends MedievalWeaponItem> supplier : this.weaponItems)
 			if (supplier.get() instanceof LanceItem lance)
 				lance.setupDropItems();
+	}
+
+	private void setId(Item.Properties p, String id) {
+		try {
+			java.lang.reflect.Field field = p.getClass().getDeclaredField("id");
+			field.setAccessible(true);
+			field.set(p, ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(this.modId, id)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void init()

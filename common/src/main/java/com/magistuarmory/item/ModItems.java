@@ -13,6 +13,8 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.Item.Properties;
@@ -32,8 +34,8 @@ public class ModItems extends ModItemsProvider {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(EpicKnights.ID, net.minecraft.core.registries.Registries.ITEM);
 
 	// Armor
-	public static final RegistrySupplier<Item> ARMET = ITEMS.register("armet", () -> new KnightItem(ArmorTypes.ARMET, net.minecraft.world.item.equipment.ArmorType.HELMET, new Item.Properties()));
-	public static final RegistrySupplier<Item> KNIGHT_CHESTPLATE = ITEMS.register("knight_chestplate", () -> new MedievalArmorItem(ArmorTypes.KNIGHT, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE, new Item.Properties()));
+	public static final RegistrySupplier<Item> ARMET = ITEMS.register("armet", () -> { Item.Properties p = new Item.Properties(); setId(p, "armet"); return new KnightItem(ArmorTypes.ARMET, net.minecraft.world.item.equipment.ArmorType.HELMET, p); });
+	public static final RegistrySupplier<Item> KNIGHT_CHESTPLATE = ITEMS.register("knight_chestplate", () -> { Item.Properties p = new Item.Properties(); setId(p, "knight_chestplate"); return new MedievalArmorItem(ArmorTypes.KNIGHT, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE, p); });
 	public static final RegistrySupplier<Item> KNIGHT_LEGGINGS = ITEMS.register("knight_leggings", () -> new MedievalArmorItem(ArmorTypes.KNIGHT, net.minecraft.world.item.equipment.ArmorType.LEGGINGS, new Item.Properties()));
 	public static final RegistrySupplier<Item> KNIGHT_BOOTS = ITEMS.register("knight_boots", () -> new MedievalArmorItem(ArmorTypes.KNIGHT, net.minecraft.world.item.equipment.ArmorType.BOOTS, new Item.Properties()));
 
@@ -63,6 +65,16 @@ public class ModItems extends ModItemsProvider {
 
 	public static void register() {
 		ITEMS.register();
+	}
+
+	private static void setId(Item.Properties p, String id) {
+		try {
+			java.lang.reflect.Field field = p.getClass().getDeclaredField("id");
+			field.setAccessible(true);
+			field.set(p, ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, id)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static final RegistrySupplier<Item> KETTLEHAT = ITEMS.register("kettlehat", () -> new MedievalArmorItem(ArmorTypes.KETTLEHAT, net.minecraft.world.item.equipment.ArmorType.HELMET, new Item.Properties()));
@@ -287,19 +299,19 @@ public class ModItems extends ModItemsProvider {
 	public static final RegistrySupplier<DyeableArmorDecorationItem> FEATHERS_DECORATION = INSTANCE.addDyeableArmorDecorationItem("feathers_decoration", () -> new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "feathers"), new Properties(), net.minecraft.world.item.equipment.ArmorType.HELMET));
 	public static final RegistrySupplier<DyeableArmorDecorationItem> VIKING_HORNS_DECORATION = INSTANCE.addDyeableArmorDecorationItem("viking_horns_decoration", () -> new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "viking_horns"), new Properties(), net.minecraft.world.item.equipment.ArmorType.HELMET));
 	public static final RegistrySupplier<DyeableArmorDecorationItem> GRIFFIN_DECORATION = INSTANCE.addDyeableArmorDecorationItem("griffin_decoration", () -> new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "griffin"), new Properties(), net.minecraft.world.item.equipment.ArmorType.HELMET, 0xFBC237));
-	public static final RegistrySupplier<DyeableArmorDecorationItem> HOOD_DECORATION = INSTANCE.addDyeableArmorDecorationItem("hood_decoration", () -> new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "hood"), new Properties(), net.minecraft.world.item.equipment.ArmorType.CHESTPLATE));
-	public static final RegistrySupplier<DyeableArmorDecorationItem> ECRANCHE_DECORATION = INSTANCE.addDyeableArmorDecorationItem("ecranche_decoration", () -> new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "ecranche"), new Properties(), net.minecraft.world.item.equipment.ArmorType.CHESTPLATE, 0xDFDFDF));
-	public static final RegistrySupplier<ArmorDecorationItem> RONDEL_DECORATION = INSTANCE.addArmorDecorationItem("rondel_decoration", () -> new ArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "rondel"), new Properties(), net.minecraft.world.item.equipment.ArmorType.CHESTPLATE));
-	public static final RegistrySupplier<ArmorDecorationItem> CAT_EARS_DECORATION = INSTANCE.addArmorDecorationItem("cat_ears_decoration", () -> new ArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "cat_ears"), new Properties(), net.minecraft.world.item.equipment.ArmorType.HELMET));
+	public static final RegistrySupplier<DyeableArmorDecorationItem> HOOD_DECORATION = INSTANCE.addDyeableArmorDecorationItem("hood_decoration", () -> { Item.Properties p = new Item.Properties(); setId(p, "hood_decoration"); return new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "hood"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE); });
+	public static final RegistrySupplier<DyeableArmorDecorationItem> ECRANCHE_DECORATION = INSTANCE.addDyeableArmorDecorationItem("ecranche_decoration", () -> { Item.Properties p = new Item.Properties(); setId(p, "ecranche_decoration"); return new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "ecranche"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE, 0xDFDFDF); });
+	public static final RegistrySupplier<ArmorDecorationItem> RONDEL_DECORATION = INSTANCE.addArmorDecorationItem("rondel_decoration", () -> { Item.Properties p = new Item.Properties(); setId(p, "rondel_decoration"); return new ArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "rondel"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE); });
+	public static final RegistrySupplier<ArmorDecorationItem> CAT_EARS_DECORATION = INSTANCE.addArmorDecorationItem("cat_ears_decoration", () -> { Item.Properties p = new Item.Properties(); setId(p, "cat_ears_decoration"); return new ArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "cat_ears"), p, net.minecraft.world.item.equipment.ArmorType.HELMET); });
 
-	public static final RegistrySupplier<MedievalBagItem> MEDIEVAL_BAG = INSTANCE.items.register("medieval_bag", MedievalBagItem::new);
+	public static final RegistrySupplier<MedievalBagItem> MEDIEVAL_BAG = INSTANCE.items.register("medieval_bag", () -> { Item.Properties p = new Item.Properties(); setId(p, "medieval_bag"); return new MedievalBagItem(p); });
 	
 	{
 		if (Platform.isFabric())
 		{
-			this.items.register("tin_ingot", () -> new Item(new Properties()));
-			this.items.register("silver_ingot", () -> new Item(new Properties()));
-			this.items.register("bronze_ingot", () -> new Item(new Properties()));
+			this.items.register("tin_ingot", () -> { Item.Properties p = new Item.Properties(); setId(p, "tin_ingot"); return new Item(p); });
+			this.items.register("silver_ingot", () -> { Item.Properties p = new Item.Properties(); setId(p, "silver_ingot"); return new Item(p); });
+			this.items.register("bronze_ingot", () -> { Item.Properties p = new Item.Properties(); setId(p, "bronze_ingot"); return new Item(p); });
 		}
 	}
 	

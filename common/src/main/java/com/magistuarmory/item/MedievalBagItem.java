@@ -20,9 +20,9 @@ import java.util.List;
 
 public class MedievalBagItem extends Item
 {
-	public MedievalBagItem()
+	public MedievalBagItem(Properties properties)
 	{
-		super(new Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+		super(properties.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 	}
 	
 	@Override
