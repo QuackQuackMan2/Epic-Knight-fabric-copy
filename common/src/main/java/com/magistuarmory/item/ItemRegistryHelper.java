@@ -45,7 +45,7 @@ public class ItemRegistryHelper
 	}
 
 	@ExpectPlatform
-	public static RegistrySupplier<DyeableWearableArmorDecorationItem> registerDyeableWearableArmorDecorationItem(DeferredRegister<Item> items, String id, ArmorType material, net.minecraft.world.item.equipment.ArmorType type, Item.Properties properties, int defaultcolor)
+	public static void setId(Item.Properties p, String id)
 	{
 		throw new AssertionError();
 	}

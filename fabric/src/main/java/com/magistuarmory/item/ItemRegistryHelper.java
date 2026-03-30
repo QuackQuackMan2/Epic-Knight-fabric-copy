@@ -75,7 +75,7 @@ public class ItemRegistryHelper
 		return items.register(id, () -> new PaviseItem(id, location, properties, material, paintable, is3d, type, block));
 	}
 
-	private static void setId(Item.Properties p, String id) {
+	public static void setId(Item.Properties p, String id) {
 		try {
 			java.lang.reflect.Field field = p.getClass().getDeclaredField("id");
 			field.setAccessible(true);

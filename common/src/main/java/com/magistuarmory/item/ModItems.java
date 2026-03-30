@@ -224,38 +224,38 @@ public class ModItems extends ModItemsProvider {
 	public static final RegistrySupplier<MedievalShieldItem> CORRUPTED_ROUND_SHIELD = INSTANCE.addMedievalShieldItem("corruptedroundshield", "corruptedroundshield", new Properties(), ModItemTier.WOOD, false, true, SHIELDS_CONFIG.get("corruptedRoundShield"));
 
 	//Patterns
-	public static final RegistrySupplier<Item> APOSTOLIC_CROSS_PATTERN = INSTANCE.addIngredientItem("apostolic_cross_pattern", () -> new BannerPatternItem(ModBannerPatternTags.APOSTOLIC_CROSS_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> BOWL_PATTERN = INSTANCE.addIngredientItem("bowl_pattern", () -> new BannerPatternItem(ModBannerPatternTags.BOWL_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> BULL_PATTERN = INSTANCE.addIngredientItem("bull_pattern", () -> new BannerPatternItem(ModBannerPatternTags.BULL_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> CHESS_PATTERN = INSTANCE.addIngredientItem("chess_pattern", () -> new BannerPatternItem(ModBannerPatternTags.CHESS_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> CRUSADER_CROSS_PATTERN = INSTANCE.addIngredientItem("crusader_cross_pattern", () -> new BannerPatternItem(ModBannerPatternTags.CRUSADER_CROSS_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> DRAGON_PATTERN = INSTANCE.addIngredientItem("dragon_pattern", () -> new BannerPatternItem(ModBannerPatternTags.DRAGON_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> EAGLE_PATTERN = INSTANCE.addIngredientItem("eagle_pattern", () -> new BannerPatternItem(ModBannerPatternTags.EAGLE_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> HORSE_PATTERN = INSTANCE.addIngredientItem("horse_pattern", () -> new BannerPatternItem(ModBannerPatternTags.HORSE_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> LILY_PATTERN = INSTANCE.addIngredientItem("lily_pattern", () -> new BannerPatternItem(ModBannerPatternTags.LILY_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> LION1_PATTERN = INSTANCE.addIngredientItem("lion1_pattern", () -> new BannerPatternItem(ModBannerPatternTags.LION1_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> LION2_PATTERN = INSTANCE.addIngredientItem("lion2_pattern", () -> new BannerPatternItem(ModBannerPatternTags.LION2_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> ORTHODOX_CROSS_PATTERN = INSTANCE.addIngredientItem("orthodox_cross_pattern", () -> new BannerPatternItem(ModBannerPatternTags.ORTHODOX_CROSS_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> SNAKE_PATTERN = INSTANCE.addIngredientItem("snake_pattern", () -> new BannerPatternItem(ModBannerPatternTags.SNAKE_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> SUN_PATTERN = INSTANCE.addIngredientItem("sun_pattern", () -> new BannerPatternItem(ModBannerPatternTags.SUN_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> SWORDS_PATTERN = INSTANCE.addIngredientItem("swords_pattern", () -> new BannerPatternItem(ModBannerPatternTags.SWORDS_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> TOWER_PATTERN = INSTANCE.addIngredientItem("tower_pattern", () -> new BannerPatternItem(ModBannerPatternTags.TOWER_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> TREE_PATTERN = INSTANCE.addIngredientItem("tree_pattern", () -> new BannerPatternItem(ModBannerPatternTags.TREE_PATTERN, new Properties().stacksTo(1)));
-	public static final RegistrySupplier<Item> TWOHEADED_EAGLE_PATTERN = INSTANCE.addIngredientItem("two_headed_eagle_pattern", () -> new BannerPatternItem(ModBannerPatternTags.TWOHEADED_EAGLE_PATTERN, new Properties().stacksTo(1)));
+	public static final RegistrySupplier<Item> APOSTOLIC_CROSS_PATTERN = INSTANCE.addIngredientItem("apostolic_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "apostolic_cross_pattern"); return new BannerPatternItem(ModBannerPatternTags.APOSTOLIC_CROSS_PATTERN, p); });
+	public static final RegistrySupplier<Item> BOWL_PATTERN = INSTANCE.addIngredientItem("bowl_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "bowl_pattern"); return new BannerPatternItem(ModBannerPatternTags.BOWL_PATTERN, p); });
+	public static final RegistrySupplier<Item> BULL_PATTERN = INSTANCE.addIngredientItem("bull_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "bull_pattern"); return new BannerPatternItem(ModBannerPatternTags.BULL_PATTERN, p); });
+	public static final RegistrySupplier<Item> CHESS_PATTERN = INSTANCE.addIngredientItem("chess_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "chess_pattern"); return new BannerPatternItem(ModBannerPatternTags.CHESS_PATTERN, p); });
+	public static final RegistrySupplier<Item> CRUSADER_CROSS_PATTERN = INSTANCE.addIngredientItem("crusader_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "crusader_cross_pattern"); return new BannerPatternItem(ModBannerPatternTags.CRUSADER_CROSS_PATTERN, p); });
+	public static final RegistrySupplier<Item> DRAGON_PATTERN = INSTANCE.addIngredientItem("dragon_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "dragon_pattern"); return new BannerPatternItem(ModBannerPatternTags.DRAGON_PATTERN, p); });
+	public static final RegistrySupplier<Item> EAGLE_PATTERN = INSTANCE.addIngredientItem("eagle_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "eagle_pattern"); return new BannerPatternItem(ModBannerPatternTags.EAGLE_PATTERN, p); });
+	public static final RegistrySupplier<Item> HORSE_PATTERN = INSTANCE.addIngredientItem("horse_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "horse_pattern"); return new BannerPatternItem(ModBannerPatternTags.HORSE_PATTERN, p); });
+	public static final RegistrySupplier<Item> LILY_PATTERN = INSTANCE.addIngredientItem("lily_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "lily_pattern"); return new BannerPatternItem(ModBannerPatternTags.LILY_PATTERN, p); });
+	public static final RegistrySupplier<Item> LION1_PATTERN = INSTANCE.addIngredientItem("lion1_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "lion1_pattern"); return new BannerPatternItem(ModBannerPatternTags.LION1_PATTERN, p); });
+	public static final RegistrySupplier<Item> LION2_PATTERN = INSTANCE.addIngredientItem("lion2_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "lion2_pattern"); return new BannerPatternItem(ModBannerPatternTags.LION2_PATTERN, p); });
+	public static final RegistrySupplier<Item> ORTHODOX_CROSS_PATTERN = INSTANCE.addIngredientItem("orthodox_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "orthodox_cross_pattern"); return new BannerPatternItem(ModBannerPatternTags.ORTHODOX_CROSS_PATTERN, p); });
+	public static final RegistrySupplier<Item> SNAKE_PATTERN = INSTANCE.addIngredientItem("snake_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "snake_pattern"); return new BannerPatternItem(ModBannerPatternTags.SNAKE_PATTERN, p); });
+	public static final RegistrySupplier<Item> SUN_PATTERN = INSTANCE.addIngredientItem("sun_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "sun_pattern"); return new BannerPatternItem(ModBannerPatternTags.SUN_PATTERN, p); });
+	public static final RegistrySupplier<Item> SWORDS_PATTERN = INSTANCE.addIngredientItem("swords_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "swords_pattern"); return new BannerPatternItem(ModBannerPatternTags.SWORDS_PATTERN, p); });
+	public static final RegistrySupplier<Item> TOWER_PATTERN = INSTANCE.addIngredientItem("tower_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "tower_pattern"); return new BannerPatternItem(ModBannerPatternTags.TOWER_PATTERN, p); });
+	public static final RegistrySupplier<Item> TREE_PATTERN = INSTANCE.addIngredientItem("tree_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "tree_pattern"); return new BannerPatternItem(ModBannerPatternTags.TREE_PATTERN, p); });
+	public static final RegistrySupplier<Item> TWOHEADED_EAGLE_PATTERN = INSTANCE.addIngredientItem("two_headed_eagle_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "two_headed_eagle_pattern"); return new BannerPatternItem(ModBannerPatternTags.TWOHEADED_EAGLE_PATTERN, p); });
 
 	//Materials
-	public static final RegistrySupplier<Item> STEEL_INGOT = INSTANCE.addIngredientItem("steel_ingot", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> STEEL_NUGGET = INSTANCE.addIngredientItem("steel_nugget", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> STEEL_RING = INSTANCE.addIngredientItem("steel_ring", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> STEEL_CHAINMAIL = INSTANCE.addIngredientItem("steel_chainmail", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> STEEL_PLATE = INSTANCE.addIngredientItem("steel_plate", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> LEATHER_STRIP = INSTANCE.addIngredientItem("leather_strip", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> HILT = INSTANCE.addIngredientItem("hilt", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> POLE = INSTANCE.addIngredientItem("pole", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> STEEL_CHAIN = INSTANCE.addIngredientItem("steel_chain", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> WOOLEN_FABRIC = INSTANCE.addIngredientItem("woolen_fabric", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> SMALL_STEEL_PLATE = INSTANCE.addIngredientItem("small_steel_plate", () -> new Item(new Properties()));
-	public static final RegistrySupplier<Item> LAMELLAR_ROWS = INSTANCE.addIngredientItem("lamellar_rows", () -> new Item(new Properties()));
+	public static final RegistrySupplier<Item> STEEL_INGOT = INSTANCE.addIngredientItem("steel_ingot", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_ingot"); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_NUGGET = INSTANCE.addIngredientItem("steel_nugget", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_nugget"); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_RING = INSTANCE.addIngredientItem("steel_ring", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_ring"); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_CHAINMAIL = INSTANCE.addIngredientItem("steel_chainmail", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_chainmail"); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_PLATE = INSTANCE.addIngredientItem("steel_plate", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_plate"); return new Item(p); });
+	public static final RegistrySupplier<Item> LEATHER_STRIP = INSTANCE.addIngredientItem("leather_strip", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "leather_strip"); return new Item(p); });
+	public static final RegistrySupplier<Item> HILT = INSTANCE.addIngredientItem("hilt", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "hilt"); return new Item(p); });
+	public static final RegistrySupplier<Item> POLE = INSTANCE.addIngredientItem("pole", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "pole"); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_CHAIN = INSTANCE.addIngredientItem("steel_chain", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_chain"); return new Item(p); });
+	public static final RegistrySupplier<Item> WOOLEN_FABRIC = INSTANCE.addIngredientItem("woolen_fabric", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "woolen_fabric"); return new Item(p); });
+	public static final RegistrySupplier<Item> SMALL_STEEL_PLATE = INSTANCE.addIngredientItem("small_steel_plate", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "small_steel_plate"); return new Item(p); });
+	public static final RegistrySupplier<Item> LAMELLAR_ROWS = INSTANCE.addIngredientItem("lamellar_rows", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "lamellar_rows"); return new Item(p); });
 	public static final @Nullable RegistrySupplier<Item> DARKENING_TEMPLATE = INSTANCE.addIngredientItem("darkening_template", () -> new SmithingTemplateItem(
 			Component.translatable(EpicKnights.ID + ".darkening_template.applies_to"),
 			Component.translatable(EpicKnights.ID + ".darkening_template.ingredients"),
