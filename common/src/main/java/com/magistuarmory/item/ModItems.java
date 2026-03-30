@@ -34,8 +34,8 @@ public class ModItems extends ModItemsProvider {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(EpicKnights.ID, net.minecraft.core.registries.Registries.ITEM);
 
 	// Armor
-	public static final RegistrySupplier<Item> ARMET = ITEMS.register("armet", () -> { Item.Properties p = new Item.Properties(); setId(p, "armet"); return new KnightItem(ArmorTypes.ARMET, net.minecraft.world.item.equipment.ArmorType.HELMET, p); });
-	public static final RegistrySupplier<Item> KNIGHT_CHESTPLATE = ITEMS.register("knight_chestplate", () -> { Item.Properties p = new Item.Properties(); setId(p, "knight_chestplate"); return new MedievalArmorItem(ArmorTypes.KNIGHT, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE, p); });
+	public static final RegistrySupplier<Item> ARMET = ITEMS.register("armet", () -> { Item.Properties p = new Item.Properties(); return new KnightItem(ArmorTypes.ARMET, net.minecraft.world.item.equipment.ArmorType.HELMET, p); });
+	public static final RegistrySupplier<Item> KNIGHT_CHESTPLATE = ITEMS.register("knight_chestplate", () -> { Item.Properties p = new Item.Properties(); return new MedievalArmorItem(ArmorTypes.KNIGHT, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE, p); });
 	public static final RegistrySupplier<Item> KNIGHT_LEGGINGS = ITEMS.register("knight_leggings", () -> new MedievalArmorItem(ArmorTypes.KNIGHT, net.minecraft.world.item.equipment.ArmorType.LEGGINGS, new Item.Properties()));
 	public static final RegistrySupplier<Item> KNIGHT_BOOTS = ITEMS.register("knight_boots", () -> new MedievalArmorItem(ArmorTypes.KNIGHT, net.minecraft.world.item.equipment.ArmorType.BOOTS, new Item.Properties()));
 
@@ -65,16 +65,6 @@ public class ModItems extends ModItemsProvider {
 
 	public static void register() {
 		ITEMS.register();
-	}
-
-	private static void setId(Item.Properties p, String id) {
-		try {
-			java.lang.reflect.Field field = p.getClass().getDeclaredField("id");
-			field.setAccessible(true);
-			field.set(p, ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, id)));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public static final RegistrySupplier<Item> KETTLEHAT = ITEMS.register("kettlehat", () -> new MedievalArmorItem(ArmorTypes.KETTLEHAT, net.minecraft.world.item.equipment.ArmorType.HELMET, new Item.Properties()));
@@ -224,38 +214,38 @@ public class ModItems extends ModItemsProvider {
 	public static final RegistrySupplier<MedievalShieldItem> CORRUPTED_ROUND_SHIELD = INSTANCE.addMedievalShieldItem("corruptedroundshield", "corruptedroundshield", new Properties(), ModItemTier.WOOD, false, true, SHIELDS_CONFIG.get("corruptedRoundShield"));
 
 	//Patterns
-	public static final RegistrySupplier<Item> APOSTOLIC_CROSS_PATTERN = INSTANCE.addIngredientItem("apostolic_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "apostolic_cross_pattern"); return new BannerPatternItem(ModBannerPatternTags.APOSTOLIC_CROSS_PATTERN, p); });
-	public static final RegistrySupplier<Item> BOWL_PATTERN = INSTANCE.addIngredientItem("bowl_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "bowl_pattern"); return new BannerPatternItem(ModBannerPatternTags.BOWL_PATTERN, p); });
-	public static final RegistrySupplier<Item> BULL_PATTERN = INSTANCE.addIngredientItem("bull_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "bull_pattern"); return new BannerPatternItem(ModBannerPatternTags.BULL_PATTERN, p); });
-	public static final RegistrySupplier<Item> CHESS_PATTERN = INSTANCE.addIngredientItem("chess_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "chess_pattern"); return new BannerPatternItem(ModBannerPatternTags.CHESS_PATTERN, p); });
-	public static final RegistrySupplier<Item> CRUSADER_CROSS_PATTERN = INSTANCE.addIngredientItem("crusader_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "crusader_cross_pattern"); return new BannerPatternItem(ModBannerPatternTags.CRUSADER_CROSS_PATTERN, p); });
-	public static final RegistrySupplier<Item> DRAGON_PATTERN = INSTANCE.addIngredientItem("dragon_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "dragon_pattern"); return new BannerPatternItem(ModBannerPatternTags.DRAGON_PATTERN, p); });
-	public static final RegistrySupplier<Item> EAGLE_PATTERN = INSTANCE.addIngredientItem("eagle_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "eagle_pattern"); return new BannerPatternItem(ModBannerPatternTags.EAGLE_PATTERN, p); });
-	public static final RegistrySupplier<Item> HORSE_PATTERN = INSTANCE.addIngredientItem("horse_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "horse_pattern"); return new BannerPatternItem(ModBannerPatternTags.HORSE_PATTERN, p); });
-	public static final RegistrySupplier<Item> LILY_PATTERN = INSTANCE.addIngredientItem("lily_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "lily_pattern"); return new BannerPatternItem(ModBannerPatternTags.LILY_PATTERN, p); });
-	public static final RegistrySupplier<Item> LION1_PATTERN = INSTANCE.addIngredientItem("lion1_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "lion1_pattern"); return new BannerPatternItem(ModBannerPatternTags.LION1_PATTERN, p); });
-	public static final RegistrySupplier<Item> LION2_PATTERN = INSTANCE.addIngredientItem("lion2_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "lion2_pattern"); return new BannerPatternItem(ModBannerPatternTags.LION2_PATTERN, p); });
-	public static final RegistrySupplier<Item> ORTHODOX_CROSS_PATTERN = INSTANCE.addIngredientItem("orthodox_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "orthodox_cross_pattern"); return new BannerPatternItem(ModBannerPatternTags.ORTHODOX_CROSS_PATTERN, p); });
-	public static final RegistrySupplier<Item> SNAKE_PATTERN = INSTANCE.addIngredientItem("snake_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "snake_pattern"); return new BannerPatternItem(ModBannerPatternTags.SNAKE_PATTERN, p); });
-	public static final RegistrySupplier<Item> SUN_PATTERN = INSTANCE.addIngredientItem("sun_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "sun_pattern"); return new BannerPatternItem(ModBannerPatternTags.SUN_PATTERN, p); });
-	public static final RegistrySupplier<Item> SWORDS_PATTERN = INSTANCE.addIngredientItem("swords_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "swords_pattern"); return new BannerPatternItem(ModBannerPatternTags.SWORDS_PATTERN, p); });
-	public static final RegistrySupplier<Item> TOWER_PATTERN = INSTANCE.addIngredientItem("tower_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "tower_pattern"); return new BannerPatternItem(ModBannerPatternTags.TOWER_PATTERN, p); });
-	public static final RegistrySupplier<Item> TREE_PATTERN = INSTANCE.addIngredientItem("tree_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "tree_pattern"); return new BannerPatternItem(ModBannerPatternTags.TREE_PATTERN, p); });
-	public static final RegistrySupplier<Item> TWOHEADED_EAGLE_PATTERN = INSTANCE.addIngredientItem("two_headed_eagle_pattern", () -> { Properties p = new Properties().stacksTo(1); ItemRegistryHelper.setId(p, "two_headed_eagle_pattern"); return new BannerPatternItem(ModBannerPatternTags.TWOHEADED_EAGLE_PATTERN, p); });
+	public static final RegistrySupplier<Item> APOSTOLIC_CROSS_PATTERN = INSTANCE.addIngredientItem("apostolic_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.APOSTOLIC_CROSS_PATTERN, p); });
+	public static final RegistrySupplier<Item> BOWL_PATTERN = INSTANCE.addIngredientItem("bowl_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.BOWL_PATTERN, p); });
+	public static final RegistrySupplier<Item> BULL_PATTERN = INSTANCE.addIngredientItem("bull_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.BULL_PATTERN, p); });
+	public static final RegistrySupplier<Item> CHESS_PATTERN = INSTANCE.addIngredientItem("chess_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.CHESS_PATTERN, p); });
+	public static final RegistrySupplier<Item> CRUSADER_CROSS_PATTERN = INSTANCE.addIngredientItem("crusader_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.CRUSADER_CROSS_PATTERN, p); });
+	public static final RegistrySupplier<Item> DRAGON_PATTERN = INSTANCE.addIngredientItem("dragon_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.DRAGON_PATTERN, p); });
+	public static final RegistrySupplier<Item> EAGLE_PATTERN = INSTANCE.addIngredientItem("eagle_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.EAGLE_PATTERN, p); });
+	public static final RegistrySupplier<Item> HORSE_PATTERN = INSTANCE.addIngredientItem("horse_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.HORSE_PATTERN, p); });
+	public static final RegistrySupplier<Item> LILY_PATTERN = INSTANCE.addIngredientItem("lily_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.LILY_PATTERN, p); });
+	public static final RegistrySupplier<Item> LION1_PATTERN = INSTANCE.addIngredientItem("lion1_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.LION1_PATTERN, p); });
+	public static final RegistrySupplier<Item> LION2_PATTERN = INSTANCE.addIngredientItem("lion2_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.LION2_PATTERN, p); });
+	public static final RegistrySupplier<Item> ORTHODOX_CROSS_PATTERN = INSTANCE.addIngredientItem("orthodox_cross_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.ORTHODOX_CROSS_PATTERN, p); });
+	public static final RegistrySupplier<Item> SNAKE_PATTERN = INSTANCE.addIngredientItem("snake_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.SNAKE_PATTERN, p); });
+	public static final RegistrySupplier<Item> SUN_PATTERN = INSTANCE.addIngredientItem("sun_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.SUN_PATTERN, p); });
+	public static final RegistrySupplier<Item> SWORDS_PATTERN = INSTANCE.addIngredientItem("swords_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.SWORDS_PATTERN, p); });
+	public static final RegistrySupplier<Item> TOWER_PATTERN = INSTANCE.addIngredientItem("tower_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.TOWER_PATTERN, p); });
+	public static final RegistrySupplier<Item> TREE_PATTERN = INSTANCE.addIngredientItem("tree_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.TREE_PATTERN, p); });
+	public static final RegistrySupplier<Item> TWOHEADED_EAGLE_PATTERN = INSTANCE.addIngredientItem("two_headed_eagle_pattern", () -> { Properties p = new Properties().stacksTo(1); return new BannerPatternItem(ModBannerPatternTags.TWOHEADED_EAGLE_PATTERN, p); });
 
 	//Materials
-	public static final RegistrySupplier<Item> STEEL_INGOT = INSTANCE.addIngredientItem("steel_ingot", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_ingot"); return new Item(p); });
-	public static final RegistrySupplier<Item> STEEL_NUGGET = INSTANCE.addIngredientItem("steel_nugget", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_nugget"); return new Item(p); });
-	public static final RegistrySupplier<Item> STEEL_RING = INSTANCE.addIngredientItem("steel_ring", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_ring"); return new Item(p); });
-	public static final RegistrySupplier<Item> STEEL_CHAINMAIL = INSTANCE.addIngredientItem("steel_chainmail", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_chainmail"); return new Item(p); });
-	public static final RegistrySupplier<Item> STEEL_PLATE = INSTANCE.addIngredientItem("steel_plate", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_plate"); return new Item(p); });
-	public static final RegistrySupplier<Item> LEATHER_STRIP = INSTANCE.addIngredientItem("leather_strip", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "leather_strip"); return new Item(p); });
-	public static final RegistrySupplier<Item> HILT = INSTANCE.addIngredientItem("hilt", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "hilt"); return new Item(p); });
-	public static final RegistrySupplier<Item> POLE = INSTANCE.addIngredientItem("pole", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "pole"); return new Item(p); });
-	public static final RegistrySupplier<Item> STEEL_CHAIN = INSTANCE.addIngredientItem("steel_chain", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "steel_chain"); return new Item(p); });
-	public static final RegistrySupplier<Item> WOOLEN_FABRIC = INSTANCE.addIngredientItem("woolen_fabric", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "woolen_fabric"); return new Item(p); });
-	public static final RegistrySupplier<Item> SMALL_STEEL_PLATE = INSTANCE.addIngredientItem("small_steel_plate", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "small_steel_plate"); return new Item(p); });
-	public static final RegistrySupplier<Item> LAMELLAR_ROWS = INSTANCE.addIngredientItem("lamellar_rows", () -> { Properties p = new Properties(); ItemRegistryHelper.setId(p, "lamellar_rows"); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_INGOT = INSTANCE.addIngredientItem("steel_ingot", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_NUGGET = INSTANCE.addIngredientItem("steel_nugget", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_RING = INSTANCE.addIngredientItem("steel_ring", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_CHAINMAIL = INSTANCE.addIngredientItem("steel_chainmail", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_PLATE = INSTANCE.addIngredientItem("steel_plate", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> LEATHER_STRIP = INSTANCE.addIngredientItem("leather_strip", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> HILT = INSTANCE.addIngredientItem("hilt", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> POLE = INSTANCE.addIngredientItem("pole", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> STEEL_CHAIN = INSTANCE.addIngredientItem("steel_chain", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> WOOLEN_FABRIC = INSTANCE.addIngredientItem("woolen_fabric", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> SMALL_STEEL_PLATE = INSTANCE.addIngredientItem("small_steel_plate", () -> { Properties p = new Properties(); return new Item(p); });
+	public static final RegistrySupplier<Item> LAMELLAR_ROWS = INSTANCE.addIngredientItem("lamellar_rows", () -> { Properties p = new Properties(); return new Item(p); });
 	public static final @Nullable RegistrySupplier<Item> DARKENING_TEMPLATE = INSTANCE.addIngredientItem("darkening_template", () -> new SmithingTemplateItem(
 			Component.translatable(EpicKnights.ID + ".darkening_template.applies_to"),
 			Component.translatable(EpicKnights.ID + ".darkening_template.ingredients"),
@@ -299,19 +289,19 @@ public class ModItems extends ModItemsProvider {
 	public static final RegistrySupplier<DyeableArmorDecorationItem> FEATHERS_DECORATION = INSTANCE.addDyeableArmorDecorationItem("feathers_decoration", () -> new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "feathers"), new Properties(), net.minecraft.world.item.equipment.ArmorType.HELMET));
 	public static final RegistrySupplier<DyeableArmorDecorationItem> VIKING_HORNS_DECORATION = INSTANCE.addDyeableArmorDecorationItem("viking_horns_decoration", () -> new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "viking_horns"), new Properties(), net.minecraft.world.item.equipment.ArmorType.HELMET));
 	public static final RegistrySupplier<DyeableArmorDecorationItem> GRIFFIN_DECORATION = INSTANCE.addDyeableArmorDecorationItem("griffin_decoration", () -> new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "griffin"), new Properties(), net.minecraft.world.item.equipment.ArmorType.HELMET, 0xFBC237));
-	public static final RegistrySupplier<DyeableArmorDecorationItem> HOOD_DECORATION = INSTANCE.addDyeableArmorDecorationItem("hood_decoration", () -> { Item.Properties p = new Item.Properties(); setId(p, "hood_decoration"); return new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "hood"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE); });
-	public static final RegistrySupplier<DyeableArmorDecorationItem> ECRANCHE_DECORATION = INSTANCE.addDyeableArmorDecorationItem("ecranche_decoration", () -> { Item.Properties p = new Item.Properties(); setId(p, "ecranche_decoration"); return new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "ecranche"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE, 0xDFDFDF); });
-	public static final RegistrySupplier<ArmorDecorationItem> RONDEL_DECORATION = INSTANCE.addArmorDecorationItem("rondel_decoration", () -> { Item.Properties p = new Item.Properties(); setId(p, "rondel_decoration"); return new ArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "rondel"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE); });
-	public static final RegistrySupplier<ArmorDecorationItem> CAT_EARS_DECORATION = INSTANCE.addArmorDecorationItem("cat_ears_decoration", () -> { Item.Properties p = new Item.Properties(); setId(p, "cat_ears_decoration"); return new ArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "cat_ears"), p, net.minecraft.world.item.equipment.ArmorType.HELMET); });
+	public static final RegistrySupplier<DyeableArmorDecorationItem> HOOD_DECORATION = INSTANCE.addDyeableArmorDecorationItem("hood_decoration", () -> { Item.Properties p = new Item.Properties(); return new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "hood"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE); });
+	public static final RegistrySupplier<DyeableArmorDecorationItem> ECRANCHE_DECORATION = INSTANCE.addDyeableArmorDecorationItem("ecranche_decoration", () -> { Item.Properties p = new Item.Properties(); return new DyeableArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "ecranche"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE, 0xDFDFDF); });
+	public static final RegistrySupplier<ArmorDecorationItem> RONDEL_DECORATION = INSTANCE.addArmorDecorationItem("rondel_decoration", () -> { Item.Properties p = new Item.Properties(); return new ArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "rondel"), p, net.minecraft.world.item.equipment.ArmorType.CHESTPLATE); });
+	public static final RegistrySupplier<ArmorDecorationItem> CAT_EARS_DECORATION = INSTANCE.addArmorDecorationItem("cat_ears_decoration", () -> { Item.Properties p = new Item.Properties(); return new ArmorDecorationItem(ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, "cat_ears"), p, net.minecraft.world.item.equipment.ArmorType.HELMET); });
 
-	public static final RegistrySupplier<MedievalBagItem> MEDIEVAL_BAG = INSTANCE.items.register("medieval_bag", () -> { Item.Properties p = new Item.Properties(); setId(p, "medieval_bag"); return new MedievalBagItem(p); });
+	public static final RegistrySupplier<MedievalBagItem> MEDIEVAL_BAG = INSTANCE.items.register("medieval_bag", () -> { Item.Properties p = new Item.Properties(); return new MedievalBagItem(p); });
 	
 	{
 		if (Platform.isFabric())
 		{
-			this.items.register("tin_ingot", () -> { Item.Properties p = new Item.Properties(); setId(p, "tin_ingot"); return new Item(p); });
-			this.items.register("silver_ingot", () -> { Item.Properties p = new Item.Properties(); setId(p, "silver_ingot"); return new Item(p); });
-			this.items.register("bronze_ingot", () -> { Item.Properties p = new Item.Properties(); setId(p, "bronze_ingot"); return new Item(p); });
+			this.items.register("tin_ingot", () -> { Item.Properties p = new Item.Properties(); return new Item(p); });
+			this.items.register("silver_ingot", () -> { Item.Properties p = new Item.Properties(); return new Item(p); });
+			this.items.register("bronze_ingot", () -> { Item.Properties p = new Item.Properties(); return new Item(p); });
 		}
 	}
 	
