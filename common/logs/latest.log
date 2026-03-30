@@ -1,0 +1,3 @@
+[05:48:32] [Test worker/INFO]: Scanning for Epic Knights addons via ServiceLoader...
+[05:48:32] [Test worker/INFO]: Discovered addon: sample-addon
+[05:48:32] [Test worker/INFO]: Wrote diagnostics to: /workspaces/Epic-Knight-fabric-copy/common/run/logs/epicknights-diagnostics.txt

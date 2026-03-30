@@ -1,5 +1,7 @@
 package com.magistuarmory;
 
+import com.magistuarmory.api.addon.AddonLoader;
+import com.magistuarmory.api.addon.AddonRegistryHelper;
 import com.magistuarmory.block.ModBlockEntityTypes;
 import com.magistuarmory.block.ModBlocks;
 import com.magistuarmory.client.render.model.ModModels;
@@ -15,6 +17,8 @@ import com.magistuarmory.item.crafting.ModRecipes;
 import com.magistuarmory.misc.ModCreativeTabs;
 import com.magistuarmory.misc.ModReloadListenerRegistry;
 import com.magistuarmory.network.ModPackets;
+import com.magistuarmory.util.DiagnosticDumper;
+import com.magistuarmory.util.EpicKnightsLogger;
 import dev.architectury.platform.Platform;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
@@ -38,23 +42,43 @@ public class EpicKnights
     
     public static void init()
     {
-        ModDataComponents.init();
-        ModEffects.init();
-        ModPackets.init();
-        ModBlocks.register();
-        ModBlockEntityTypes.init();
-        CommonEvents.init();
+        EpicKnightsLogger.info("Initializing Epic Knights mod...");
+        AddonLoader.discoverAddons();
+
+        safeInit("ModDataComponents", ModDataComponents::init);
+        safeInit("ModEffects", ModEffects::init);
+        safeInit("ModPackets", ModPackets::init);
+        safeInit("ModBlocks", ModBlocks::register);
+        safeInit("ModBlockEntityTypes", ModBlockEntityTypes::init);
+        safeInit("CommonEvents", CommonEvents::init);
+
         if (Platform.getEnv() == EnvType.CLIENT)
         {
-            ClientEvents.init();
-            ModModels.INSTANCE.init(ModItems.INSTANCE);
+            safeInit("ClientEvents", ClientEvents::init);
+            safeInit("ModModels", () -> ModModels.INSTANCE.init(ModItems.INSTANCE));
         }
 
-        ArmorTypes.init();
-        ModItems.INSTANCE.init();
-        ModRecipes.init();
-        ModCreativeTabs.init();
-        ModReloadListenerRegistry.init();
+        safeInit("ArmorTypes", ArmorTypes::init);
+        safeInit("ModItems", ModItems.INSTANCE::init);
+        safeInit("ModRecipes", ModRecipes::init);
+        safeInit("ModCreativeTabs", ModCreativeTabs::init);
+        safeInit("ModReloadListenerRegistry", ModReloadListenerRegistry::init);
+
+        AddonLoader.runRegistration();
+        AddonLoader.runInitialize();
+
+        EpicKnightsLogger.info("Epic Knights initialization complete.");
+    }
+
+    private static void safeInit(String stage, Runnable runnable) {
+        try {
+            runnable.run();
+            EpicKnightsLogger.debug("{} completed", stage);
+        } catch (Throwable throwable) {
+            String message = "Error during initialization stage: " + stage;
+            EpicKnightsLogger.error(message, throwable);
+            DiagnosticDumper.dump(message, throwable);
+        }
     }
     
     public static void checkBetterCombatOrEpicFightInstalled()

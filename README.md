@@ -83,9 +83,20 @@ git checkout fabric-1.21.4-port
 # Run tests
 ./gradlew test
 
-# Test in-game
+# Test in-game (local desktop)
 ./gradlew runClient
 ```
+
+### Headless container / CI note
+
+In headless environments (Docker/CI), use `xvfb-run` for the client start:
+
+```bash
+sudo apt-get update && sudo apt-get install -y xvfb
+xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ./gradlew runClient
+```
+
+This avoids `GLFW error during init: Failed to detect any supported platform` on servers without GPU.
 
 The built JAR will be in `fabric/build/libs/`.
 
@@ -106,7 +117,12 @@ Access configuration in-game via Mod Menu or edit the JSON file directly.
 
 ## Port Status
 
-This branch is a direct Fabric 1.21.4 port of the original Epic Knights source and asset content. It does not include built-in addon hooks or an internal addon system.
+This branch is a direct Fabric 1.21.4 port of the original Epic Knights source and asset content. It includes:
+
+- Addon API support via `com.magistuarmory.api.addon`
+- Centralized logging and crash diagnostics (`EpicKnightsLogger`, `DiagnosticDumper`)
+- Automated tests under `common/src/test/java`
+- GitHub Actions CI with build/test/artifact publish
 
 ## Contributing
 
