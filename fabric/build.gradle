@@ -38,8 +38,8 @@ dependencies {
     modImplementation project(':common')
     include project(':common')
     shadow project(':common')
-    modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
-        exclude group: "net.fabricmc.fabric-api" }
+    //modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
+    //    exclude group: "net.fabricmc.fabric-api" }
 }
 
 processResources {
