@@ -54,19 +54,17 @@ public class PaviseBlock extends AbstractBannerBlock
 	static final Vector3d BOXMAX = new Vector3d(1.0, 1.0, 1.0);
 	
 	public final MapCodec<PaviseBlock> codec;
-	private final Supplier<BlockEntityType<PaviseBlockEntity>> entityType;
 	protected String shieldId;
 	
-	public PaviseBlock(DyeColor color, Properties prop, String shieldId, Supplier<BlockEntityType<PaviseBlockEntity>> entityType)
+	public PaviseBlock(DyeColor color, Properties prop, String shieldId)
 	{
 		super(color, prop.setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(EpicKnights.ID, shieldId))));
 		this.shieldId = shieldId;
-		this.entityType = entityType;
-		this.codec = RecordCodecBuilder.mapCodec((instance) -> instance.group(DyeColor.CODEC.fieldOf("color").forGetter(AbstractBannerBlock::getColor), propertiesCodec()).apply(instance, (a, b) -> new PaviseBlock(a, b, shieldId, entityType)));
+		this.codec = RecordCodecBuilder.mapCodec((instance) -> instance.group(DyeColor.CODEC.fieldOf("color").forGetter(AbstractBannerBlock::getColor), propertiesCodec()).apply(instance, (a, b) -> new PaviseBlock(a, b, shieldId)));
 	}
 	
 	public BlockEntityType<PaviseBlockEntity> getEntityType() {
-		return this.entityType.get();
+		return ModBlockEntityTypes.getPaviseBlockEntityType().get();
 	}
 
 	@Override
@@ -83,13 +81,27 @@ public class PaviseBlock extends AbstractBannerBlock
 	@Override
 	public BlockEntity newBlockEntity(BlockPos blockpos, BlockState blockstate) 
 	{
-		return new PaviseBlockEntity(this.entityType, blockpos, blockstate);
+		return new PaviseBlockEntity(blockpos, blockstate);
 	}
 	
 	@Override
 	public @NotNull Item asItem() 
 	{
-		RegistrySupplier<MedievalShieldItem> item = ModItems.PAVISES.wood;
+		String material = this.shieldId.split("_")[0];
+		RegistrySupplier<MedievalShieldItem> item = switch (material) {
+			case "wood" -> ModItems.PAVISES.wood;
+			case "gold" -> ModItems.PAVISES.gold;
+			case "stone" -> ModItems.PAVISES.stone;
+			case "iron" -> ModItems.PAVISES.iron;
+			case "diamond" -> ModItems.PAVISES.diamond;
+			case "netherite" -> ModItems.PAVISES.netherite;
+			case "copper" -> ModItems.PAVISES.copper;
+			case "silver" -> ModItems.PAVISES.silver;
+			case "steel" -> ModItems.PAVISES.steel;
+			case "tin" -> ModItems.PAVISES.tin;
+			case "bronze" -> ModItems.PAVISES.bronze;
+			default -> null;
+		};
 		return item != null ? item.get() : Items.AIR;
 	}
 	

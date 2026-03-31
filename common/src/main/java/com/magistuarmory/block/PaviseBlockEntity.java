@@ -18,8 +18,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
-
 
 public class PaviseBlockEntity extends BlockEntity
 {
@@ -30,9 +28,9 @@ public class PaviseBlockEntity extends BlockEntity
     private boolean enchanted = false;
     private CompoundTag stackCompound;
 
-    public PaviseBlockEntity(Supplier<BlockEntityType<PaviseBlockEntity>> type, BlockPos blockpos, BlockState blockstate)
+    public PaviseBlockEntity(BlockPos blockpos, BlockState blockstate)
     {
-        super(type.get(), blockpos, blockstate);
+        super(ModBlockEntityTypes.getPaviseBlockEntityType().get(), blockpos, blockstate);
         this.patterns = BannerPatternLayers.EMPTY;
     }
     

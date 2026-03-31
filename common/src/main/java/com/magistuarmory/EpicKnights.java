@@ -47,10 +47,10 @@ public class EpicKnights
         safeInit("ModDataComponents", ModDataComponents::init);
         safeInit("ModEffects", ModEffects::init);
         safeInit("ModPackets", ModPackets::init);
+        safeInit("ModItems", ModItems.INSTANCE::init);
         safeInit("ModBlocks", ModBlocks::register);
         safeInit("ModBlockEntityTypes", ModBlockEntityTypes::init);
-        safeInit("ModItems", ModItems.INSTANCE::init);
-        safeInit("ModItems static", ModItems::register);
+        safeInit("ModRecipes", ModRecipes::init);
         safeInit("CommonEvents", CommonEvents::init);
 
         if (Platform.getEnv() == EnvType.CLIENT)
@@ -60,8 +60,6 @@ public class EpicKnights
         }
 
         safeInit("ArmorTypes", ArmorTypes::init);
-        safeInit("ModRecipes", ModRecipes::init);
-        safeInit("ModRecipes", ModRecipes::init);
         safeInit("ModCreativeTabs", ModCreativeTabs::init);
         safeInit("ModReloadListenerRegistry", ModReloadListenerRegistry::init);
 
