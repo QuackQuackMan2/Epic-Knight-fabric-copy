@@ -84,6 +84,12 @@ public class ModRender
 		setupPlatform(content);
 	}
 
+	public static void registerRenderers()
+	{
+		// This method exists for compatibility with common client lifecycle hooks.
+		// In Fabric 1.21.4, the needed render setup is done in ModRender.setup() / setupPlatform().
+	}
+
 	public static void registerModelsLoadListener(ModItemsProvider content)
 	{
 		LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entitytype, renderer, helper, context) -> {
