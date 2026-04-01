@@ -1,6 +1,6 @@
 package com.magistuarmory.fabric.client.render.entity.layer;
 
-import com.magistuarmory.item.MedievalArmorItem;
+import com.magistuarmory.item.armor.MedievalArmorItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
