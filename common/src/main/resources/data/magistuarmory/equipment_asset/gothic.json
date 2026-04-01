@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/gothic.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/gothic_boots",
+        "leggings": "magistuarmory:models/armor/gothic_leggings",
+        "chestplate": "magistuarmory:models/armor/gothic_chestplate"
+      }
+    }
+  ]
+}

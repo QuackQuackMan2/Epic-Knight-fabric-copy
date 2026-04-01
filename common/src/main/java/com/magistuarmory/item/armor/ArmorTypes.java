@@ -24,85 +24,47 @@ public class ArmorTypes
 
 // Fabric: No DeferredRegister. We'll register directly in init().
 
-	public static final ArmorType MINICROWN;
-	public static final ArmorType CROWN;
-	public static final ArmorType FLOWERCROWN;
-	public static final ArmorType KNIGHT;
-	public static final ArmorType ARMET;
-	public static final ArmorType STECHHELM;
-	public static final ArmorType JOUSTING;
-	public static final ArmorType SALLET;
-	public static final ArmorType GOTHIC;
-	public static final ArmorType MAXIMILIAN_HELMET;
-	public static final ArmorType MAXIMILIAN;
-	public static final ArmorType CHAINMAIL;
-	public static final ArmorType KETTLEHAT;
-	public static final ArmorType PLATEMAIL;
-	public static final ArmorType BARBUTE;
-	public static final ArmorType HALFARMOR;
-	public static final ArmorType GREATHELM;
-	public static final ArmorType CRUSADER;
-	public static final ArmorType BRIGANDINE;
-	public static final ArmorType GAMBESON;
-	public static final ArmorType CEREMONIAL_ARMET;
-	public static final ArmorType CEREMONIAL;
-	public static final ArmorType SHISHAK;
-	public static final ArmorType NORMAN;
-	public static final ArmorType RUSTED_BARBUTE;
-	public static final ArmorType RUSTED_HALFARMOR;
-	public static final ArmorType RUSTED_CHAINMAIL;
-	public static final ArmorType RUSTED_KETTLEHAT;
-	public static final ArmorType RUSTED_NORMAN;
-	public static final ArmorType RUSTED_GREATHELM;
-	public static final ArmorType RUSTED_CRUSADER;
-	public static final ArmorType BASCINET;
-	public static final ArmorType XIV_CENTURY_KNIGHT;
-	public static final ArmorType WINGED_HUSSAR_CHESTPLATE;
-	public static final ArmorType CUIRASSIER;
-	public static final ArmorType KASTENBRUST;
-	public static final ArmorType GRAND_BASCINET;
-	public static final ArmorType LAMELLAR;
+	public static ArmorType MINICROWN;
+	public static ArmorType CROWN;
+	public static ArmorType FLOWERCROWN;
+	public static ArmorType KNIGHT;
+	public static ArmorType ARMET;
+	public static ArmorType STECHHELM;
+	public static ArmorType JOUSTING;
+	public static ArmorType SALLET;
+	public static ArmorType GOTHIC;
+	public static ArmorType MAXIMILIAN_HELMET;
+	public static ArmorType MAXIMILIAN;
+	public static ArmorType CHAINMAIL;
+	public static ArmorType KETTLEHAT;
+	public static ArmorType PLATEMAIL;
+	public static ArmorType BARBUTE;
+	public static ArmorType HALFARMOR;
+	public static ArmorType GREATHELM;
+	public static ArmorType CRUSADER;
+	public static ArmorType BRIGANDINE;
+	public static ArmorType GAMBESON;
+	public static ArmorType CEREMONIAL_ARMET;
+	public static ArmorType CEREMONIAL;
+	public static ArmorType SHISHAK;
+	public static ArmorType NORMAN;
+	public static ArmorType RUSTED_BARBUTE;
+	public static ArmorType RUSTED_HALFARMOR;
+	public static ArmorType RUSTED_CHAINMAIL;
+	public static ArmorType RUSTED_KETTLEHAT;
+	public static ArmorType RUSTED_NORMAN;
+	public static ArmorType RUSTED_GREATHELM;
+	public static ArmorType RUSTED_CRUSADER;
+	public static ArmorType BASCINET;
+	public static ArmorType XIV_CENTURY_KNIGHT;
+	public static ArmorType WINGED_HUSSAR_CHESTPLATE;
+	public static ArmorType CUIRASSIER;
+	public static ArmorType KASTENBRUST;
+	public static ArmorType GRAND_BASCINET;
+	public static ArmorType LAMELLAR;
 
 	static {
 		// We'll initialize these in init()
-		MINICROWN = null;
-		CROWN = null;
-		FLOWERCROWN = null;
-		KNIGHT = null;
-		ARMET = null;
-		STECHHELM = null;
-		JOUSTING = null;
-		SALLET = null;
-		GOTHIC = null;
-		MAXIMILIAN_HELMET = null;
-		MAXIMILIAN = null;
-		CHAINMAIL = null;
-		KETTLEHAT = null;
-		PLATEMAIL = null;
-		BARBUTE = null;
-		HALFARMOR = null;
-		GREATHELM = null;
-		CRUSADER = null;
-		BRIGANDINE = null;
-		GAMBESON = null;
-		CEREMONIAL_ARMET = null;
-		CEREMONIAL = null;
-		SHISHAK = null;
-		NORMAN = null;
-		RUSTED_BARBUTE = null;
-		RUSTED_HALFARMOR = null;
-		RUSTED_CHAINMAIL = null;
-		RUSTED_KETTLEHAT = null;
-		RUSTED_NORMAN = null;
-		RUSTED_GREATHELM = null;
-		RUSTED_CRUSADER = null;
-		BASCINET = null;
-		XIV_CENTURY_KNIGHT = null;
-		WINGED_HUSSAR_CHESTPLATE = null;
-		CUIRASSIER = null;
-		KASTENBRUST = null;
-		GRAND_BASCINET = null;
-		LAMELLAR = null;
 	}
 
 private static Ingredient ingredientFromTag(TagKey<Item> tag)
@@ -119,7 +81,8 @@ private static Ingredient ingredientFromTag(TagKey<Item> tag)
 					   Holder<SoundEvent> equipSound,
 					   boolean dyeable,
 					   String repairItemTag) {
-		return new ArmorType(location, modelLocation, config.toughness, config.knockbackResistance, new Integer[] {config.bootsDurability, config.leggingsDurability, config.chestplateDurability, config.helmetDurability}, new Integer[] {config.bootsDefense, config.leggingsDefense, config.chestplateDefense, config.helmetDefense}, config.enchantmentValue, equipSound, dyeable, config.enabled, () -> ingredientFromTag(TagKey.create(Registries.ITEM, ResourceLocation.parse(repairItemTag))));
+		TagKey<Item> repairTag = TagKey.create(Registries.ITEM, ResourceLocation.parse(repairItemTag));
+		return new ArmorType(location, modelLocation, config.toughness, config.knockbackResistance, new Integer[] {config.bootsDurability, config.leggingsDurability, config.chestplateDurability, config.helmetDurability}, new Integer[] {config.bootsDefense, config.leggingsDefense, config.chestplateDefense, config.helmetDefense}, config.enchantmentValue, equipSound, dyeable, config.enabled, repairTag);
 	}
 
 	private static ArmorType create(ResourceLocation location,
@@ -127,8 +90,8 @@ private static Ingredient ingredientFromTag(TagKey<Item> tag)
 								   ArmorConfig.ArmorTypeConfig config,
 								   Holder<SoundEvent> equipSound,
 								   boolean dyeable,
-								   Supplier<Ingredient> ingredientSupplier) {
-		return new ArmorType(location, modelLocation, config.toughness, config.knockbackResistance, new Integer[] {config.bootsDurability, config.leggingsDurability, config.chestplateDurability, config.helmetDurability}, new Integer[] {config.bootsDefense, config.leggingsDefense, config.chestplateDefense, config.helmetDefense}, config.enchantmentValue, equipSound, dyeable, config.enabled, ingredientSupplier);
+								   TagKey<Item> repairTag) {
+		return new ArmorType(location, modelLocation, config.toughness, config.knockbackResistance, new Integer[] {config.bootsDurability, config.leggingsDurability, config.chestplateDurability, config.helmetDurability}, new Integer[] {config.bootsDefense, config.leggingsDefense, config.chestplateDefense, config.helmetDefense}, config.enchantmentValue, equipSound, dyeable, config.enabled, repairTag);
 	}
 
 	private static ArmorType create(ResourceLocation location,
@@ -136,11 +99,19 @@ private static Ingredient ingredientFromTag(TagKey<Item> tag)
 								   ArmorConfig.ArmorTypeConfig config,
 								   Holder<SoundEvent> equipSound,
 								   boolean dyeable) {
-		return new ArmorType(location, modelLocation, config.toughness, config.knockbackResistance, new Integer[] {config.bootsDurability, config.leggingsDurability, config.chestplateDurability, config.helmetDurability}, new Integer[] {config.bootsDefense, config.leggingsDefense, config.chestplateDefense, config.helmetDefense}, config.enchantmentValue, equipSound, dyeable, config.enabled, () -> Ingredient.of());
+		TagKey<Item> repairTag = TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:air"));
+		return new ArmorType(location, modelLocation, config.toughness, config.knockbackResistance, new Integer[] {config.bootsDurability, config.leggingsDurability, config.chestplateDurability, config.helmetDurability}, new Integer[] {config.bootsDefense, config.leggingsDefense, config.chestplateDefense, config.helmetDefense}, config.enchantmentValue, equipSound, dyeable, config.enabled, repairTag);
 	}
 
 	public static void init() {
 		// Fabric: Register armor materials and types here using Registry.register
 		// TODO: Implement registration logic in Fabric style
+		ARMET = create(ResourceLocation.parse(EpicKnights.ID + ":armet"), ResourceLocation.parse(EpicKnights.ID + ":armet"), ARMOR_CONFIG.get("armet"), SoundEvents.ARMOR_EQUIP_IRON, true, "minecraft:iron_ingot");
+		KNIGHT = create(ResourceLocation.parse(EpicKnights.ID + ":knight"), ResourceLocation.parse(EpicKnights.ID + ":knight"), ARMOR_CONFIG.get("knight"), SoundEvents.ARMOR_EQUIP_IRON, true, "minecraft:iron_ingot");
+		STECHHELM = create(ResourceLocation.parse(EpicKnights.ID + ":stechhelm"), ResourceLocation.parse(EpicKnights.ID + ":stechhelm"), ARMOR_CONFIG.get("stechhelm"), SoundEvents.ARMOR_EQUIP_IRON, true, "minecraft:iron_ingot");
+		JOUSTING = create(ResourceLocation.parse(EpicKnights.ID + ":jousting"), ResourceLocation.parse(EpicKnights.ID + ":jousting"), ARMOR_CONFIG.get("jousting"), SoundEvents.ARMOR_EQUIP_IRON, true, "minecraft:iron_ingot");
+		SALLET = create(ResourceLocation.parse(EpicKnights.ID + ":sallet"), ResourceLocation.parse(EpicKnights.ID + ":sallet"), ARMOR_CONFIG.get("sallet"), SoundEvents.ARMOR_EQUIP_IRON, true, "minecraft:iron_ingot");
+		GOTHIC = create(ResourceLocation.parse(EpicKnights.ID + ":gothic"), ResourceLocation.parse(EpicKnights.ID + ":gothic"), ARMOR_CONFIG.get("gothic"), SoundEvents.ARMOR_EQUIP_IRON, true, "minecraft:iron_ingot");
+		CEREMONIAL_ARMET = create(ResourceLocation.parse(EpicKnights.ID + ":ceremonialarmet"), ResourceLocation.parse(EpicKnights.ID + ":ceremonialarmet"), ARMOR_CONFIG.get("ceremonialArmet"), SoundEvents.ARMOR_EQUIP_GOLD, true, "minecraft:gold_ingot");
 	}
 }

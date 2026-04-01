@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/jousting.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/jousting_boots",
+        "leggings": "magistuarmory:models/armor/jousting_leggings",
+        "chestplate": "magistuarmory:models/armor/jousting_chestplate"
+      }
+    }
+  ]
+}

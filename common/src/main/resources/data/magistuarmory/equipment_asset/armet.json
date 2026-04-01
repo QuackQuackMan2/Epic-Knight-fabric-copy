@@ -1,0 +1,11 @@
+{
+  "texture": "magistuarmory:textures/models/armor/armet.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "helmet": "magistuarmory:models/armor/armet"
+      }
+    }
+  ]
+}
