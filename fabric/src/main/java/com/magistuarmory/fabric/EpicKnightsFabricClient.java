@@ -9,7 +9,5 @@ public class EpicKnightsFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         EpicKnights.checkBetterCombatOrEpicFightInstalled();
         ClientEvents.init();
-        // ModModels initialization disabled - rendering system requires 1.21.4 compatibility fixes
-        // This will be re-enabled once rendering subsystem is updated
     }
 }

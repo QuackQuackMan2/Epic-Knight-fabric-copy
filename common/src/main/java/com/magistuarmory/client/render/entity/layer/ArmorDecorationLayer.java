@@ -78,8 +78,16 @@ public class ArmorDecorationLayer<T extends LivingEntity> implements ArmorPatter
 
    public void render(PoseStack pose, MultiBufferSource buffer, int p, Object state, float f, float f2, float f3, float f4, float f5, float f6)
    {
-      // Rendering disabled for 1.21.4 compatibility
-      throw new UnsupportedOperationException("Armor decoration rendering not yet updated for 1.21.4");
+      // Render armor decorations for each equipped armor piece
+      if (state instanceof LivingEntity entity)
+      {
+         @SuppressWarnings("unchecked")
+         T typedEntity = (T) entity;
+         renderPiece(pose, buffer, typedEntity, EquipmentSlot.HEAD, p);
+         renderPiece(pose, buffer, typedEntity, EquipmentSlot.CHEST, p);
+         renderPiece(pose, buffer, typedEntity, EquipmentSlot.LEGS, p);
+         renderPiece(pose, buffer, typedEntity, EquipmentSlot.FEET, p);
+      }
    }
 
    private void renderPiece(PoseStack pose, MultiBufferSource buffer, T entity, EquipmentSlot slot, int p)
