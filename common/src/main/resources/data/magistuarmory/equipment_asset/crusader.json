@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/crusader.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/crusader_boots",
+        "leggings": "magistuarmory:models/armor/crusader_leggings",
+        "chestplate": "magistuarmory:models/armor/crusader_chestplate"
+      }
+    }
+  ]
+}

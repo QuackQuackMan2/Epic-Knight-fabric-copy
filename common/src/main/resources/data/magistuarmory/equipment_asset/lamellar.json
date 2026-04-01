@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/lamellar.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/lamellar_boots",
+        "leggings": "magistuarmory:models/armor/lamellar_leggings",
+        "chestplate": "magistuarmory:models/armor/lamellar_chestplate"
+      }
+    }
+  ]
+}

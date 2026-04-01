@@ -1,0 +1,11 @@
+{
+  "texture": "magistuarmory:textures/models/armor/rusted_halfarmor.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "chestplate": "magistuarmory:models/armor/rusted_halfarmor"
+      }
+    }
+  ]
+}

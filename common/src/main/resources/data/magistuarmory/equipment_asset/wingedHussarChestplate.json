@@ -1,0 +1,11 @@
+{
+  "texture": "magistuarmory:textures/models/armor/winged_hussar_chestplate.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "chestplate": "magistuarmory:models/armor/winged_hussar_chestplate"
+      }
+    }
+  ]
+}

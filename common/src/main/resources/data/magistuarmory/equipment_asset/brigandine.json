@@ -1,0 +1,11 @@
+{
+  "texture": "magistuarmory:textures/models/armor/brigandine.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "chestplate": "magistuarmory:models/armor/brigandine"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/chainmail.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/chainmail_boots",
+        "leggings": "magistuarmory:models/armor/chainmail_leggings",
+        "chestplate": "magistuarmory:models/armor/chainmail_chestplate"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "texture": "magistuarmory:textures/models/armor/kettlehat.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "helmet": "magistuarmory:models/armor/kettlehat"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/xiv_century_knight.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/xiv_century_knight_boots",
+        "leggings": "magistuarmory:models/armor/xiv_century_knight_leggings",
+        "chestplate": "magistuarmory:models/armor/xiv_century_knight_chestplate"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/greathelm.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/greathelm_boots",
+        "leggings": "magistuarmory:models/armor/greathelm_leggings",
+        "chestplate": "magistuarmory:models/armor/greathelm_chestplate"
+      }
+    }
+  ]
+}

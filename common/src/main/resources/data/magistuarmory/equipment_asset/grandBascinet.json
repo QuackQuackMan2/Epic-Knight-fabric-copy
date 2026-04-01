@@ -1,0 +1,11 @@
+{
+  "texture": "magistuarmory:textures/models/armor/grand_bascinet.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "helmet": "magistuarmory:models/armor/grand_bascinet"
+      }
+    }
+  ]
+}

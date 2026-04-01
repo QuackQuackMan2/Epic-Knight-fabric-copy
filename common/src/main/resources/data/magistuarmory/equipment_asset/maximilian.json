@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/maximilian.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/maximilian_boots",
+        "leggings": "magistuarmory:models/armor/maximilian_leggings",
+        "chestplate": "magistuarmory:models/armor/maximilian_chestplate"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/rusted_chainmail.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/rusted_chainmail_boots",
+        "leggings": "magistuarmory:models/armor/rusted_chainmail_leggings",
+        "chestplate": "magistuarmory:models/armor/rusted_chainmail_chestplate"
+      }
+    }
+  ]
+}

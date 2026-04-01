@@ -59,7 +59,6 @@ public class EpicKnights
             safeInit("ModModels", () -> ModModels.INSTANCE.init(ModItems.INSTANCE));
         }
 
-        safeInit("ArmorTypes", ArmorTypes::init);
         safeInit("ModCreativeTabs", ModCreativeTabs::init);
         safeInit("ModReloadListenerRegistry", ModReloadListenerRegistry::init);
 

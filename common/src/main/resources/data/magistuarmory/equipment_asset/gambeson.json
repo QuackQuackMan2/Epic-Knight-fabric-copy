@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/gambeson.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/gambeson_boots",
+        "leggings": "magistuarmory:models/armor/gambeson_leggings",
+        "chestplate": "magistuarmory:models/armor/gambeson_chestplate"
+      }
+    }
+  ]
+}

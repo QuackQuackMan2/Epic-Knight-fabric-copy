@@ -34,8 +34,10 @@ public final class ArmorType {
 
 	// Create a vanilla ArmorMaterial record instance from this ArmorType's fields
 	public ArmorMaterial toVanillaArmorMaterial() {
-		// TODO: Implement proper equipment asset support
-		// For now, return a minimal ArmorMaterial with placeholder values
+		if (this.armorMaterialHolder != null) {
+			return this.armorMaterialHolder.value();
+		}
+		// Calculate max durability across all armor types
 		int maxDurability = Arrays.stream(new int[] {
 			this.durability.get(net.minecraft.world.item.equipment.ArmorType.BOOTS),
 			this.durability.get(net.minecraft.world.item.equipment.ArmorType.LEGGINGS),
@@ -49,8 +51,9 @@ public final class ArmorType {
 			armorDefense.put(type, this.defense.getOrDefault(type, 0));
 		}
 		
-		// For now, use null for the assetId - this will be fixed in a separate update
-		ResourceKey<EquipmentAsset> assetId = null;
+		// Create a ResourceKey for the equipment asset using the armor type's location.
+		// This matches the data/magistuarmory/equipment_asset/*.json files.
+		ResourceKey<EquipmentAsset> assetId = ResourceKey.create(Registries.EQUIPMENT_ASSET, this.location);
 		
 		return new ArmorMaterial(
 			maxDurability,
@@ -59,7 +62,7 @@ public final class ArmorType {
 			this.equipSound,
 			this.toughness,
 			this.knockbackResistance,
-			this.repairTag,
+			this.repairIngredient,
 			assetId
 		);
 	}
@@ -69,18 +72,19 @@ public final class ArmorType {
 	private final EnumMap<net.minecraft.world.item.equipment.ArmorType, Integer> defense;
 	private final int enchantmentValue;
 	private final Holder<SoundEvent> equipSound;
-	private final TagKey<Item> repairTag;
+	private final Ingredient repairIngredient;
 	private final boolean dyeable;
 	private final ResourceLocation location;
 	private final ResourceLocation modellocation;
 	private final boolean enabled;
+	private Holder<ArmorMaterial> armorMaterialHolder;
 
-	public ArmorType(ResourceLocation location, ResourceLocation modellocation, float toughness, float knockbackResistance, Integer[] durability, Integer[] defenseForSlot, int enchantmentValue, Holder<SoundEvent> equipSound, boolean dyeable, boolean enabled, TagKey<Item> repairTag) {
+	public ArmorType(ResourceLocation location, ResourceLocation modellocation, float toughness, float knockbackResistance, Integer[] durability, Integer[] defenseForSlot, int enchantmentValue, Holder<SoundEvent> equipSound, boolean dyeable, boolean enabled, Ingredient repairIngredient) {
 		this.toughness = toughness;
 		this.knockbackResistance = knockbackResistance;
 		this.enchantmentValue = enchantmentValue;
 		this.equipSound = equipSound;
-		this.repairTag = repairTag;
+		this.repairIngredient = repairIngredient;
 		this.dyeable = dyeable;
 		this.location = location;
 		this.modellocation = modellocation;
@@ -99,6 +103,13 @@ public final class ArmorType {
 			enumMap.put(net.minecraft.world.item.equipment.ArmorType.HELMET, defenseForSlot[3]);
 		});
 		this.enabled = enabled;
+	}
+
+	public void registerArmorMaterial() {
+		if (this.armorMaterialHolder != null) return;
+		ArmorMaterial material = toVanillaArmorMaterial();
+		Registry.register(BuiltInRegistries.ARMOR_MATERIAL, this.location, material);
+		this.armorMaterialHolder = BuiltInRegistries.ARMOR_MATERIAL.getHolder(this.location).orElseThrow();
 	}
 
 	   // Removed Forge/Architectury constructor
@@ -136,11 +147,7 @@ public final class ArmorType {
 	}
 
 	public Supplier<Ingredient> getRepairIngredient() {
-		return () -> {
-			List<net.minecraft.world.item.Item> items = new java.util.ArrayList<>();
-			BuiltInRegistries.ITEM.getTagOrEmpty(this.repairTag).forEach(holder -> items.add(holder.value()));
-			return Ingredient.of(items.stream());
-		};
+		return () -> this.repairIngredient;
 	}
 	
 	public boolean isDisabled()

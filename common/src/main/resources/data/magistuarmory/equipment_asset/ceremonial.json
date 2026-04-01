@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/ceremonial.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/ceremonial_boots",
+        "leggings": "magistuarmory:models/armor/ceremonial_leggings",
+        "chestplate": "magistuarmory:models/armor/ceremonial_chestplate"
+      }
+    }
+  ]
+}

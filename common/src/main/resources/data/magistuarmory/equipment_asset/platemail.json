@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/platemail.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/platemail_boots",
+        "leggings": "magistuarmory:models/armor/platemail_leggings",
+        "chestplate": "magistuarmory:models/armor/platemail_chestplate"
+      }
+    }
+  ]
+}

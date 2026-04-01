@@ -1,0 +1,13 @@
+{
+  "texture": "magistuarmory:textures/models/armor/kastenbrust.png",
+  "layers": [
+    {
+      "type": "humanoid",
+      "models": {
+        "boots": "magistuarmory:models/armor/kastenbrust_boots",
+        "leggings": "magistuarmory:models/armor/kastenbrust_leggings",
+        "chestplate": "magistuarmory:models/armor/kastenbrust_chestplate"
+      }
+    }
+  ]
+}
